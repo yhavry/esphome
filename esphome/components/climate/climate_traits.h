@@ -189,7 +189,7 @@ class ClimateTraits {
   }
   void set_swing_mode_support_(climate::ClimateSwingMode mode, bool supported) {
     if (supported) {
-      this->supported_swing_modes_.insert(mode);
+      this->supported_swing_modes_.erase(mode);
     } else {
       this->supported_swing_modes_.erase(mode);
     }
