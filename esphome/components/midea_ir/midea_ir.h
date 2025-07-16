@@ -12,37 +12,7 @@ const uint8_t MIDEA_TEMPC_MAX = 30;  // Celsius
 const uint8_t MIDEA_TEMPF_MIN = 62;  // Fahrenheit
 const uint8_t MIDEA_TEMPF_MAX = 86;  // Fahrenheit
 
-climate::ClimateTraits traits() override {
-  auto traits = climate_ir::ClimateIR::traits();
-
-  traits.set_supported_modes({
-    climate::CLIMATE_MODE_COOL,
-    climate::CLIMATE_MODE_DRY,
-    climate::CLIMATE_MODE_FAN_ONLY,
-    climate::CLIMATE_MODE_HEAT_COOL,  // We will rename this below
-  });
-
-  traits.set_custom_mode_names({
-    {climate::CLIMATE_MODE_HEAT_COOL, "Auto"},
-  });
-
-  traits.set_supported_presets({
-    climate::CLIMATE_PRESET_NONE,
-    climate::CLIMATE_PRESET_SLEEP,
-    climate::CLIMATE_PRESET_BOOST,
-  });
-
-  traits.set_supported_fan_modes({
-    climate::CLIMATE_FAN_AUTO,
-    climate::CLIMATE_FAN_LOW,
-    climate::CLIMATE_FAN_MEDIUM,
-    climate::CLIMATE_FAN_HIGH,
-  });
-
-  traits.set_supported_swing_modes({});  // No swing
-
-  return traits;
-}
+climate::ClimateTraits traits() override;
 
 class MideaIR : public climate_ir::ClimateIR {
  public:
