@@ -39,7 +39,6 @@ class ControlData : public MideaData {
     MODE_COOL,
     MODE_DRY,
     MODE_AUTO,
-    MODE_HEAT,
     MODE_FAN_ONLY,
   };
   enum FanMode : uint8_t {
