@@ -12,8 +12,6 @@ const uint8_t MIDEA_TEMPC_MAX = 30;  // Celsius
 const uint8_t MIDEA_TEMPF_MIN = 62;  // Fahrenheit
 const uint8_t MIDEA_TEMPF_MAX = 86;  // Fahrenheit
 
-climate::ClimateTraits traits() override;
-
 class MideaIR : public climate_ir::ClimateIR {
  public:
   MideaIR()
@@ -26,7 +24,7 @@ class MideaIR : public climate_ir::ClimateIR {
 
   /// Override control to change settings of the climate device.
   void control(const climate::ClimateCall &call) override;
-
+climate::ClimateTraits traits() override;
   /// Set use of Fahrenheit units
   void set_fahrenheit(bool value) {
     this->fahrenheit_ = value;
