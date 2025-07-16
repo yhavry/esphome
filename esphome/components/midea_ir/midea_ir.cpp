@@ -27,12 +27,10 @@ climate::ClimateTraits MideaIR::traits() {
     climate::CLIMATE_MODE_COOL,
     climate::CLIMATE_MODE_DRY,
     climate::CLIMATE_MODE_FAN_ONLY,
-    climate::CLIMATE_MODE_HEAT_COOL,  // renamed to Auto below
+    climate::CLIMATE_MODE_AUTO,  // renamed to Auto below
   });
 
-  traits.set_custom_mode_names({
-    {climate::CLIMATE_MODE_HEAT_COOL, "Auto"},
-  });
+
 
   traits.set_supported_presets({
     climate::CLIMATE_PRESET_NONE,
@@ -83,6 +81,9 @@ void ControlData::set_mode(ClimateMode mode) {
     case ClimateMode::CLIMATE_MODE_FAN_ONLY:
       this->set_mode_(MODE_FAN_ONLY);
       break;
+        case ClimateMode::CLIMATE_MODE_AUTO:
+      this->set_mode_(MODE_AUTO);
+      break;
     default:
       // Force AUTO if anything else
       this->set_mode_(MODE_AUTO);
@@ -102,8 +103,6 @@ ClimateMode ControlData::get_mode() const {
       return ClimateMode::CLIMATE_MODE_DRY;
     case MODE_FAN_ONLY:
       return ClimateMode::CLIMATE_MODE_FAN_ONLY;
-    case MODE_AUTO:
-      return ClimateMode::CLIMATE_MODE_HEAT_COOL;
     default:
       return ClimateMode::CLIMATE_MODE_COOL;
   }
