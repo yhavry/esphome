@@ -20,6 +20,37 @@ void ControlData::set_temp(float temp) {
   }
   this->set_value_(2, lroundf(temp) - min, 31);
 }
+climate::ClimateTraits MideaIR::traits() {
+  auto traits = climate_ir::ClimateIR::traits();
+
+  traits.set_supported_modes({
+    climate::CLIMATE_MODE_COOL,
+    climate::CLIMATE_MODE_DRY,
+    climate::CLIMATE_MODE_FAN_ONLY,
+    climate::CLIMATE_MODE_HEAT_COOL,  // renamed to Auto below
+  });
+
+  traits.set_custom_mode_names({
+    {climate::CLIMATE_MODE_HEAT_COOL, "Auto"},
+  });
+
+  traits.set_supported_presets({
+    climate::CLIMATE_PRESET_NONE,
+    climate::CLIMATE_PRESET_SLEEP,
+    climate::CLIMATE_PRESET_BOOST,
+  });
+
+  traits.set_supported_fan_modes({
+    climate::CLIMATE_FAN_AUTO,
+    climate::CLIMATE_FAN_LOW,
+    climate::CLIMATE_FAN_MEDIUM,
+    climate::CLIMATE_FAN_HIGH,
+  });
+
+  traits.set_supported_swing_modes({});  // No swing
+
+  return traits;
+}
 
 float ControlData::get_temp() const {
   const uint8_t temp = this->get_value_(2, 31);
