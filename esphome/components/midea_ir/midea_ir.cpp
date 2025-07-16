@@ -172,7 +172,7 @@ void MideaIR::transmit_(MideaData &data) {
     remote_base::MideaProtocol().encode(transmit.get_data(), data);
     transmit.perform();
 
-    delay(50);  // Allow spacing between retransmits (45–50ms typical)
+    delay(250);  // Allow spacing between retransmits (45–50ms typical)
   }
 }
 
