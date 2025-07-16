@@ -167,19 +167,15 @@ void MideaIR::control(const climate::ClimateCall &call) {
 void MideaIR::transmit_(MideaData &data) {
   data.finalize();
 
-  // Give the receiver time to wake up (fake burst)
-  this->transmitter_->mark(4500);
-  this->transmitter_->space(4500);  // Fake leading pulse/space
-
   for (int i = 0; i < 3; i++) {
     auto transmit = this->transmitter_->transmit();
     remote_base::MideaProtocol().encode(transmit.get_data(), data);
     transmit.perform();
 
-    // Wait before next transmission
-    delay(50);  // Midea remote sends repeats every ~45-50ms
+    delay(50);  // Allow spacing between retransmits (45–50ms typical)
   }
 }
+
 
 
 void MideaIR::transmit_state() {
