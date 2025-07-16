@@ -12,8 +12,6 @@ climate::ClimateTraits ClimateIR::traits() {
   traits.set_supported_modes({climate::CLIMATE_MODE_OFF, climate::CLIMATE_MODE_HEAT_COOL});
   if (this->supports_cool_)
     traits.add_supported_mode(climate::CLIMATE_MODE_COOL);
-  if (this->supports_heat_)
-    traits.add_supported_mode(climate::CLIMATE_MODE_HEAT);
   if (this->supports_dry_)
     traits.add_supported_mode(climate::CLIMATE_MODE_DRY);
   if (this->supports_fan_only_)
@@ -24,7 +22,6 @@ climate::ClimateTraits ClimateIR::traits() {
   traits.set_visual_max_temperature(this->maximum_temperature_);
   traits.set_visual_temperature_step(this->temperature_step_);
   traits.set_supported_fan_modes(this->fan_modes_);
-  traits.set_supported_swing_modes(this->swing_modes_);
   traits.set_supported_presets(this->presets_);
   return traits;
 }
