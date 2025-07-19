@@ -158,13 +158,14 @@ void MideaIR::control(const climate::ClimateCall &call) {
   climate_ir::ClimateIR::control(call);
 }
 
-/*void MideaIR::transmit_(MideaData &data) {
+void MideaIR::transmit_(MideaData &data) {
   data.finalize();
   auto transmit = this->transmitter_->transmit();
   remote_base::MideaProtocol().encode(transmit.get_data(), data);
   transmit.perform();
-}*/
-void MideaIR::transmit_(MideaData &data) {
+}
+// Transmit this shit twice
+/*void MideaIR::transmit_(MideaData &data) {
   data.finalize();
 
   for (int i = 0; i < 3; i++) {
@@ -174,7 +175,7 @@ void MideaIR::transmit_(MideaData &data) {
 
     delay(250);  // Allow spacing between retransmits (45–50ms typical)
   }
-}
+}*/
 
 
 
